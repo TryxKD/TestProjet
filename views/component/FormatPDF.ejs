@@ -1,0 +1,41 @@
+<%- include('../partiels/Header.ejs') %>
+
+<body>
+    <div class="format">
+        
+            <header>
+                <p> Mes Taches / Sections </p>
+            </header>
+        
+        <div class="contenu">
+            <table class="tab">
+                <tr>
+                    <th> Nouvelles demandes - ToDo: </th>
+                </tr>
+                <td class="nouveau"> </td>
+                <tr>
+                    <th> En cours - Doing: </th>
+                </tr>
+                <td class="doing"> </td>
+                <tr>
+                    <th> Fait - Done: </th>
+                </tr>
+                <td class="done"> </td>
+            </table>
+        </div>
+
+        <!-- <footer>
+            <p> Copyright @Stellarix-Alfred 2023 </p>
+        </footer> -->
+        
+    </div>
+    <!-- <div class="nouvellePage"></div> -->
+    <button id="download-pdf" > Télécharger </button>
+    
+    
+</body>
+</html>
+
+<%- include('../javascript/FormatPDFScript.ejs') %>
+
+<%- include('../css/FormatPDFStyle.ejs') %>

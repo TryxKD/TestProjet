@@ -1,0 +1,62 @@
+<%- include('../partiels/Header.ejs') %>
+
+<body>
+    <% const name= 'ANDRIAMAHEFA' %>
+    <div class="accueil">
+        <header>
+            <nav>
+                <h1> Alfred </h1>
+                <div class="res">
+                <input type="search" name="recherche" id="recherche" placeholder="Rechercher">
+                <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
+                </div>
+                <button class="deconnexion"> <a href="#"> Deconnexion </a> </button>  
+            </nav>
+        </header>
+    
+        <div class="nav">
+            <div class="menu">
+                <ul>
+                    <% if (nav.length > 0) { %>
+                        <% nav.forEach(navi => { %>
+                            <center>
+                                <li class="<%= navi.class %>"> <i class="<%= navi.icon %>"></i> <a href="<%= navi.url %>"> <%= navi.menu %> </a>  </li>
+                            </center>  
+                        <% }) %>
+                    <% } %>
+                </ul>
+            </div>
+            <div class="invitation">
+                <ul>
+                    <center>
+                        <li> <a href="#"> Inviter des collegues </a> </li>
+                        <li> <a href="#"> Aide et premiers pas </a> </li>
+                    </center>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="milieu">
+            <p class="date"> Mercredi 1 mars 2023 </p>
+            <p class="salutation"> Bonjour, <%=name %></p>
+            <div class="you">
+                <section>
+                    <select name="journee" id="journee">
+                        <option value="1j"> 1 jour  </option>
+                        <option value="2j"> 2 jours  </option>
+                        <option value="3j"> 3 jours  </option>
+                        <option value="4j"> 4 jours  </option>
+                        <option value="5j"> 5 jours  </option>
+                        <option value="6j"> 6 jours  </option>
+                        <option value="7j"> 7 jours  </option>
+                    </select>
+                    <p class="tacheTerminee"> 0 <span> tache(s) terminee(s) </span> </p>
+                    <p class="collaborateur"> 0 <span> collaborateur(s) </span> </p>
+                </section>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<%- include('../css/AccueilStyle.ejs') %>

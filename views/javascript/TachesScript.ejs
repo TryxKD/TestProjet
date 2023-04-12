@@ -1,0 +1,169 @@
+<script>
+// Ouverture du menu d'exporation des Taches
+$(document).ready(function(){
+  $(".btnExporter").click(function(){
+    $("#Exportat").show("slow")
+  });
+});
+// ----------------------------------------------------------------------
+
+// Fermeture du menu d'exporation
+$(document).ready(function(){
+  $(".closeExportat").click(function(){
+    $("#Exportat").hide("slow")
+  })
+})
+// ----------------------------------------------------------------------
+
+// Traitement de l'exporation
+$(document).ready(function() {
+  // Recuperation des donnees et initialisation des variables
+  var dataToDo = <%- JSON.stringify(toDo) %>
+  console.log("dataToDo: ",dataToDo)
+  // var dataToDoing = <%- JSON.stringify(toDoing) %>
+  // console.log("dataToDoing: ", dataToDoing)
+  var dataToDoing = <%- JSON.stringify(tasksDoing) %>
+  console.log("dataToDoing: ", dataToDoing)
+  // var dataToDoing = <%- JSON.stringify(tags) %>
+  var dataToDone = <%- JSON.stringify(taches) %>
+  console.log("dataToDone: ", dataToDone)
+  
+  // Convertis les valeurs de dataToDoing en tableau
+  // let toDoingArray = Object.values(dataToDoing)
+  // console.log("dataToDo: ",dataToDo)
+  // console.log('dataToDoing: ', toDoingArray)
+  // console.log("dataToDone: ", dataToDone)
+
+  let toDo_tache = []
+  let doing_tache = []
+  let done_tache = []
+  // ----------------------------------------------------------------------
+
+  // Verification des checkbox
+  if($('.check').change(function() {
+    if($(this).prop('checked')) {
+      // Initialisation des variables
+      // Prend l'id de l'element cocher
+      let id = $(this).val()
+      
+      // Prend la valeur de l'element cocher
+      let indexToDo = dataToDo.findIndex(element => element.id == id)
+      let valeurToDo = dataToDo[indexToDo]
+      // let indexToDoing = dataToDoing.findIndex(element => element.id == id)
+      // let valeurToDoing = dataToDoing[indexToDoing]
+      // let indexToDoing = toDoingArray.findIndex(element => element.id == id)
+      // let valeurToDoing = toDoingArray[indexToDoing]
+      let indexToDoing = dataToDoing.findIndex(element => element.id == id)
+      let valeurToDoing = dataToDoing[indexToDoing]
+      console.log('valeurDoing: ', valeurToDoing)
+      let indexToDone = dataToDone.findIndex(element => element.id == id)
+      let valeurToDone = dataToDone[indexToDone]
+      // ----------------------------------------------------------------------
+
+      // Ajout et Stockage des données dans le stockage interne
+      if (indexToDo !== -1) {
+        toDo_tache.push(valeurToDo)
+        console.log('Do: ', toDo_tache)
+        localStorage.setItem("jsonToDo", JSON.stringify(toDo_tache))
+      }
+
+      if (indexToDoing !== -1) {
+        doing_tache.push(valeurToDoing)
+        console.log('Doing: ', doing_tache)
+        localStorage.setItem("jsonToDoing", JSON.stringify(doing_tache))
+      }
+
+      if (indexToDone !== -1) {
+        done_tache.push(valeurToDone)
+        console.log('Done: ', done_tache)
+        localStorage.setItem("jsonToDone", JSON.stringify(done_tache)) 
+      }
+      // ----------------------------------------------------------------------
+    } else {
+      // Initialisation des variables
+      // Prend l'id de l'element a supprimer
+      let id = $(this).val()
+
+      // Prend la valeur de l'element a supprimer
+      let indexToDo = toDo_tache.findIndex(element => element.id == id)
+      let indexToDoing = doing_tache.findIndex(element => element.id == id)
+      let indexToDone = done_tache.findIndex(element => element.id == id)
+      // ----------------------------------------------------------------------
+
+      // Suppression de l'élément du tableau et reinitialisation du tableau
+      if (indexToDo !== -1) {
+        toDo_tache.splice(indexToDo, 1)
+        console.log('Do: ', toDo_tache)
+        localStorage.setItem("jsonToDo", JSON.stringify(toDo_tache))
+      }
+
+      if (indexToDoing !== -1) {
+        doing_tache.splice(indexToDoing, 1)
+        console.log('Doing: ', doing_tache)
+        localStorage.setItem("jsonToDoing", JSON.stringify(doing_tache))
+      }
+
+      if (indexToDone !== -1) {
+        done_tache.splice(indexToDone, 1)
+        console.log('Done: ', done_tache)
+        localStorage.setItem("jsonToDone", JSON.stringify(done_tache)) 
+      }
+      // ----------------------------------------------------------------------
+    }
+  }))
+  // ----------------------------------------------------------------------
+
+  // Verification des formats
+  $('.viewCopy').click(function() {
+    // Vérification si l'option avec la valeur "ListeSection" est sélectionnée
+    if ($('option[value="ListSection"]').is(':selected')) {
+      if($('.check:checked').length > 0) {
+        // Ouvrir dans une nouvelle onglet
+        window.open("/FormatPDF")
+      } else {
+          alert("Vous n'avez coche aucune tache")
+        }
+    // ----------------------------------------------------------------------
+
+    // Vérification si l'option avec la valeur "Liste" est sélectionnée
+    } else if( $('option[value="List"]').is(':selected')) {
+      if($('.check:checked').length > 0) {
+        // Ouvrir dans une nouvelle onglet
+        window.open('/List')
+      } else {
+          alert("Vous n'avez coche aucune tache")
+        }
+    // ----------------------------------------------------------------------
+
+        
+    // Vérifiez si l'option avec la valeur "CardsIS" est sélectionnée
+    } else if($('option[value="CardsIS"]').is(':selected')) {
+      if($('.check:checked').length > 0) {
+        // Ouvrir dans une nouvelle onglet
+          window.open('/CardsIS')
+      } else {
+          alert("Vous n'avez coche aucune tache")
+        }
+    // ----------------------------------------------------------------------
+
+    // Vérifiez si l'option avec la valeur "ProjectDashboard" est sélectionnée
+    } else if($('option[value="ProjectDashboard"]').is(':selected')) {
+      if($('.check:checked').length > 0) {
+        // Ouvrir dans une nouvelle onglet
+        window.open('/ProjectDashboard')
+        
+      } else {
+          alert("Vous n'avez coche aucune tache")
+        }
+    // ----------------------------------------------------------------------
+
+    // Message d'alert si vous nous n'avez pas selectionne le bon format
+    } else {
+        alert("Vous n'avez pas choisi le bon format")
+      }
+    // ----------------------------------------------------------------------
+  })  
+  // ----------------------------------------------------------------------
+})
+// ----------------------------------------------------------------------
+</script>

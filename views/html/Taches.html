@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- <script src="../node_modules/jquery/dist/jquery.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- <script src="../node_modules/jspdf/dist/jspdf.umd.min.js"></script> -->
+    <link rel="stylesheet" href="../css/Taches.css">
+    <script src="../javascript/exportation.js"></script>
+    <title> Mes Taches </title>
+</head>
+<body>
+    <div class="Taches">
+        <header>
+            <nav>
+                <h1> Alfred </h1>
+                <div class="res">
+                <input type="search" name="recherche" id="recherche" placeholder="Rechercher">
+                </div>
+                <button class="deconnexion"> <a href="#"> Deconnexion </a> </button>  
+            </nav>
+        </header>
+
+        <div class="nav">
+            <div class="menu">
+                <ul>
+                    <center>
+                        <li class="li1"> <a href="./Accueil.html"> Accueil </a>  </li>
+                        <li class="li2"> <a href="./Taches.html"> Mes taches </a>  </li>
+                        <li class="li3"> <a href="#"> Boite de reception </a>  </li>
+                        <li class="li4"> <a href="./Exportation.html"> Exportation </a>  </li>
+                        <li class="li5"> <a href="#"> Objectifs </a>  </li>
+                    </center>
+                </ul>
+            </div>
+            <div class="invitation">
+                <ul>
+                    <center>
+                        <li> <a href="#"> Inviter des collegues </a> </li>
+                        <li> <a href="#"> Aide et premiers pas </a> </li>
+                    </center>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="containerHeader">
+                <nav>
+                    <p> Mes Taches </p>
+                    <select>
+                        <option value=""></option>
+                        <option value="exporterCSV"> Exporter CSV </option>
+                    </select>
+                    <ul>
+                        <li class="active"> <a href="#"> Liste </a> </li>
+                        <li class="none"> <a href="#"> Tableau </a> </li>
+                        <li class="none"> <a href="#"> Calendrier </a> </li>
+                        <li class="none"> <a href="#"> Fichiers </a> </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <div class="export">
+            <div class="btn">
+                <button> Ajouter une tache </button>
+                <button class="btnExporter"> Exporter </button>
+            </div>
+            <table>
+                <tr>
+                    <th class="nouv"> Nouvelles demandes - ToDo:</th>
+                </tr>
+                <tr>
+                    <td> <input type="checkbox" name=""class="check"> <p class="para"> debug source viber: declencheur message doublement appele </p> </td>
+                    <td> <input type="checkbox" name=""class="check"> <p class="para"> Migration json db viber vers mongo db </p> </td>
+                </tr>
+                <tr>
+                    <th class="enCours"> En cours - Doing: </th>
+                </tr>
+                <tr>
+                    <th class="done"> Fait - Done: </th>
+                </tr>
+                <tr>
+                    <td> <input type="checkbox" name=""class="check"> <p class="para"> Correction design UI historique attenuation </p> </td>
+                    <td> <input type="checkbox" name=""class="check"> <p class="para"> Correction bug creation ticket au niveau changement attenuation (doublon) </p> </td>
+                    <td> <input type="checkbox" name="" class="check"> <p class="para"> Ajout fonctionnalite: section modifiable ou suppression </p> </td>
+                    <td> <input type="checkbox" name=""class="check"> <p class="para"> Modification validateur selon type de visite </p> </td>
+                    <td> <input type="checkbox" name=""class="check"> <p class="para"> Recuperation des ports par ME </p> </td>
+                    <td> <input type="checkbox" name=""class="check"> <p class="para"> Ajout table ME_ports </p> </td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+
+    <div id="Exportat">
+        <!-- <div class="arriere"></div> -->
+        <div class="fond">
+            <div class="exportHeader">
+                <p> Exportation </p>
+                <button class="closeExportat"> Close </button>
+            </div>
+            <div class="exportContainer">
+                <div class="partie1">
+                    <p> 1. Choose a format in which to display your results: </p>
+                    <select name="" id="">
+                        <option value=""> CSV - Basic </option>
+                        <option value=""> CSV - Detailed </option>
+                        <option value=""> JSON Complete </option>
+                        <option value=""> List - Sections/Tasks </option>
+                        <option value=""> List - Sections/Tasks/Description/Subtasks </option>
+                        <option value=""> List - Sections/Tasks/Description/Subtasks/Duel/Assignee </option>
+                        <option value=""> Projects Dashboard </option>
+                        <option value=""> Slide Presentation </option>
+                        <option value=""> Slide Notes </option>
+                    </select>
+                </div>
+                <div class="partie2">
+                    <p> 2. Choose an output: View and Copy to clipboard, View and Print (or save as PDF) via print dialog, or Save File: </p>
+                    <div class="exportButton">
+                        <button> <a href="#"> View + Copy </a> </button>
+                        <button class="viewCopy"> <a href="#"> View + PrintPDF </a> </button>
+                        <button> <a href="#"> Save CSV/Text File </a> </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

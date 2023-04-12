@@ -1,0 +1,141 @@
+<%- include('../partiels/Header.ejs') %>
+
+<body>
+    <div class="Taches">
+        <header>
+            <nav>
+                <h1> Alfred </h1>
+                <div class="res">
+                <input type="search" name="recherche" id="recherche" placeholder="Rechercher">
+                <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
+                </div>
+                <button class="deconnexion"> <a href="#"> Deconnexion </a> </button>  
+            </nav>
+        </header>
+    
+        <div class="nav">
+            <div class="menu">
+                <ul>
+                    <% if (nav.length > 0) { %>
+                        <% nav.forEach(navi => { %>
+                            <center>
+                                <li class="<%= navi.class %>"> <i class="<%= navi.icon %>"></i> <a href="<%= navi.url %>"> <%= navi.menu %> </a>  </li>
+                            </center>  
+                        <% }) %>
+                    <% } %>
+                </ul>
+            </div>
+            <div class="invitation">
+                <ul>
+                    <center>
+                        <li> <a href="#"> Inviter des collegues </a> </li>
+                        <li> <a href="#"> Aide et premiers pas </a> </li>
+                    </center>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="container">
+            <div class="containerHeader">
+                <nav>
+                    <p> Mes Taches </p>
+                    <select>
+                        <option value=""></option>
+                        <option value="exporterCSV"> Exporter CSV </option>
+                    </select>
+                    <ul>
+                        <li class="active"> <a href="#"> Liste </a> </li>
+                        <li class="none"> <a href="#"> Tableau </a> </li>
+                        <li class="none"> <a href="#"> Calendrier </a> </li>
+                        <li class="none"> <a href="#"> Fichiers </a> </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    
+        <div class="export">
+            <div class="btn">
+                <button class="btnAjout"> Ajouter une tache </button>
+                <button class="btnExporter"> Exporter </button>
+            </div>
+            <table>
+                <tr>
+                    <th> Nouvelles demandes - ToDo:</th>
+                </tr>
+                <tr>
+                    <% if (toDo.length > 0) { %>
+                        <% toDo.forEach(toDos => { %>
+                            <td class="nouv"> <input type="checkbox" name=""class="check" value="<%= toDos.id %>"> <p class="para"> <%= toDos.Task_text %> </p> </td>
+                        <% }) %>
+                    <% } %>
+                </tr>
+                <tr>
+                    <th> En cours - Doing: </th>
+                </tr>
+                <tr>
+                    <!-- <% if (toDoing.length > 0) { %>
+                        <% toDoing.forEach(toDoings => { %>
+                            <td class="doing"> <input type="checkbox" name=""class="check" value="<%= toDoings.id %>"> <p class="para"> <%= toDoings.paraToDoing %> </p> </td>
+                        <% }) %>
+                    <% } %> -->
+                    <!-- <% for(let key in tags) { %>
+                        <% if (["1", "2", "4", "7"].includes(key)) { %>
+                            <td class="doing"> <input type="checkbox" name=""class="check" value="<%= tags[key].id %>"> <p class="para"> <%= tags[key].paraToDoing %> </p> </td>
+                        <% } %>
+                    <% } %> -->
+                    <% if (tasksDoing.length > 0) { %>
+                        <% tasksDoing.forEach(tasksDoings => { %>
+                            <td class="doing"> <input type="checkbox" name=""class="check" value="<%= tasksDoings.id %>"> <p class="para"> <%= tasksDoings.Task_text %> </p> </td>
+                        <% }) %>
+                    <% } %>
+                </tr>
+                <tr>
+                    <th> Fait - Done: </th>
+                </tr>
+                <tr>
+                    <% if (taches.length > 0) { %>
+                        <% taches.forEach(tache => { %>
+                            <td class="done"> <input type="checkbox" name=""class="check" value="<%= tache.id %>"> <p class="para"> <%= tache.Task_text %> </p> </td>
+                        <% }) %>
+                    <% } else { %>
+                        <td> <p class="para"> Vous n'avez aucune tache </p> </td>
+                    <% } %>
+                </tr>
+    
+            </table>
+        </div>
+    </div>
+    <div id="Exportat">
+        <div class="fond">
+            <div class="exportHeader">
+                <p> Exportation </p>
+                <button class="closeExportat"> Close </button>
+            </div>
+            <div class="exportContainer">
+                <div class="partie1">
+                    <p> 1. Choose a format in which to display your results: </p>
+                    <select name="" id="">
+                        <option value="CardsIS"> Cards - Including Subtasks </option>
+                        <option value="List"> List - Tasks </option>
+                        <option value="ListSection"> List - Sections/Tasks </option>
+                        <option value="ProjectDashboard"> Projects Dashboard </option>
+                    </select>
+                </div>
+                <div class="partie2">
+                    <p> 2. Choose an output: View and Copy to clipboard, View and Print (or save as PDF) via print dialog, or Save File: </p>
+                    <div class="exportButton">
+                        <button target="_blank"> View + Copy </button>
+                        <button class="viewCopy" target="_blank">  View + PrintPDF  </button>
+                        <button target="_blank"> Save CSV/Text File </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
+
+<%- include('../javascript/TachesScript.ejs') %>
+
+<%- include('../css/TachesStyle.ejs') %>

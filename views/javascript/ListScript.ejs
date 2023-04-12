@@ -1,0 +1,109 @@
+<script>
+    // Traitement de la Liste des Taches
+    $(document).ready(function() {
+        // Prend les donnees stockees dans le stockage interne et les convertis en JSON
+        var jsonObjectToDo = JSON.parse(localStorage.getItem('jsonToDo'))
+        var jsonObjectToDoing = JSON.parse(localStorage.getItem('jsonToDoing'))
+        var jsonObjectToDone = JSON.parse(localStorage.getItem('jsonToDone'))
+        // ----------------------------------------------------------------------
+
+        // Declaration et initialisation variable 
+        jsonObjectToDo = jsonObjectToDo ? jsonObjectToDo : []
+        jsonObjectToDoing = jsonObjectToDoing ? jsonObjectToDoing : []
+        jsonObjectToDone = jsonObjectToDone ? jsonObjectToDone : []
+        var tabList = [...jsonObjectToDo, ...jsonObjectToDoing, ...jsonObjectToDone]
+        console.log('tabList: ', tabList);
+
+        var deb = 0;
+        console.log('deb: ', deb);
+        var fin = 19
+        console.log('fin: ', fin);
+        var dim = tabList.length - 1;
+        console.log('dim: ', dim);
+
+        // ----------------------------------------------------------------------
+
+        // Creation design
+        $.fn.Design = function(token) {
+            $('body').append(
+                $('<div class="List"></div>').append(
+                    $('<div class="haut"></div>').append(
+                        $('<p class="current-time"></p>'),
+                        $('<p id="alfred"> Alfred </p>')
+                    ),
+                    $('<div class="titre"> List Taches </div>'),
+                    $('<div class="mid"></div>').append(
+                        $(`<ul class="ulList_${token}"></ul>`)
+                    )
+                )
+            );
+        }
+
+        // ----------------------------------------------------------------------
+
+        // Affichage des taches
+        if (tabList.length > 0) {
+            let token = 0
+            $('body').Design(token);
+            $.each(tabList, function(index, value) {
+                if (value != null && value !== undefined) {
+                    if (index >= deb && index <= fin) {
+                        $(`.ulList_${token}`).append("<li class='liList" + index + "'>" + (value.Task_text != null && value.Task_text !== undefined ? value.Task_text : '') + "</li>");
+                        $(`.ulList_${token} li`).css({
+                            'margin-bottom' : '10px',
+                            'color' : '#1a1919',
+                            'font-family' : 'Arial, Helvetica, sans-serif'
+                        })
+                    }
+
+                    if (index == fin && index < dim) {
+                        token++
+                        $('body').Design(token);
+                        deb = fin + 1;
+                        fin = deb + 19;
+                    }
+                }
+            });
+        }
+
+        // ----------------------------------------------------------------------
+
+        // Prend le temps actuel
+        var currentTime = new Date($.now())
+        $('.current-time').html(currentTime.toLocaleTimeString())
+        // ----------------------------------------------------------------------
+
+        // Telechargement de la page en version PDF
+        $('#download-List').click(function() {
+            // Efface  le bouton du telechargement
+            $('#download-List').css('display', 'none')
+
+            // Converti le contenu html en version PDF
+            $.get('/List', function(html) {
+                var bodyList = $('body').html()
+
+                // Efface les caches
+                var cleanHtmlContent = DOMPurify.sanitize(bodyList)
+                console.log(cleanHtmlContent)
+
+                // initialisation jspdf
+                var doc = new jspdf.jsPDF('p', 'pt', 'a4')
+
+                // Sauvegarde le contenu HTML en pdf
+                doc.html(bodyList, {
+                    callback: function(pdf) {
+                        doc.save('List.pdf')
+                    },
+                    autoPaging: 'text',
+                    // margin: [top, right, bottom, left]
+                    margin: [0, 0, 0, 0],
+                    html2canvas: {
+                        scale: .92,
+                    }
+                })
+            })
+        })
+        // ----------------------------------------------------------------------
+    })
+    // ----------------------------------------------------------------------
+</script>
