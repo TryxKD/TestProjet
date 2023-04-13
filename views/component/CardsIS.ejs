@@ -1,15 +1,44 @@
 <%- include('/home/tsiory/Projet/React/views/partiels/Header.ejs')%> 
 
 <body>
-    <!-- <div class="Cards">
-        <header>
-            <p id="CardsTime"></p>
-            <p class="Alfred"> Alfred </p>
-        </header>
-    </div> -->
     <button id="download-Cards"> Télécharger </button>
 </body>
 </html>
 
-<%- include('/home/tsiory/Projet/React/views/javascript/CardsISScript.ejs') %>
+<!-- Prend les donnees stocker dans le stockage interne et les convertis en JSON -->
+<script src="partiels/jsonObject.js"></script>
+<!-- ---------------------------------------------------------------------- -->
+
+<script>
+    $(document).ready(function() {
+        // Creation des tables
+        // jsonObjectToDo
+        $.getScript(`partiels/CISToDo.js`, function() {
+            drawToDo()
+        })
+        // ----------------------------------------------------------------------
+
+        // jsonObjectToDoing
+        $.getScript(`partiels/CISToDoing.js`, function() {
+            drawToDoing()
+        })
+        // ----------------------------------------------------------------------
+
+        // jsonObjectToDone
+        $.getScript(`partiels/CISToDone.js`, function() {
+            drawToDone()
+        })
+        var CardsTime = new Date($.now())
+        $('.CardsTime').html(CardsTime.toLocaleTimeString())
+        // ----------------------------------------------------------------------
+        // ----------------------------------------------------------------------
+
+        // Telechargement du contenu HTML en PDF
+        $.getScript(`partiels/CISPdf.js`, function() {
+            drawPdf()
+        })
+        // ----------------------------------------------------------------------
+    })
+</script>
+
 <%- include('/home/tsiory/Projet/React/views/css/CardsISStyle.ejs') %>

@@ -50,7 +50,7 @@ app.use(cookieSession({
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
-app.use(express.static(path.join(__dirname, '../views/image')))
+app.use(express.static(path.join(__dirname, '../views/')))
 
 
 app.use(bodyParser.urlencoded({ extended: false }));

@@ -1,22 +1,32 @@
 <%- include('../partiels/Header.ejs') %>
 
 <body>
-    <!-- <div class="List">
-        <div class="haut">
-            <p class="current-time"></p>
-            <p id="alfred"> Alfred </p>
-        </div>
-        <div class="titre"> List Taches </div>
-        <div class="mid">
-            <ul class="ulList">
-                
-            </ul>
-        </div>
-    </div> -->
-    <button id="download-List"> Télécharger </button>
-    
+    <button id="download-List"> Télécharger </button>  
 </body>
 </html>
 
-<%- include('../javascript/ListScript.ejs') %>
+<!-- Prend les donnees stockees dans le stockage interne et les convertis en JSON -->
+<script src="partiels/jsonObject.js"></script>
+<!-- ---------------------------------------------------------------------- -->
+
+<!-- Declaration et initialisation variable -->
+<script src="partiels/ListVariable.js"></script>
+<!-- ---------------------------------------------------------------------- -->
+
+<script>
+    $(document).ready(function() {
+        // Creation design
+        $.getScript(`partiels/ListDesign.js`, function() {
+            ListDesign()
+        })
+        // ----------------------------------------------------------------------
+
+        // Telechargement de la page en version PDF
+        $.getScript(`partiels/ListPdf.js`, function() {
+            ListPdf()
+        })
+        // ----------------------------------------------------------------------
+    })
+</script>
+
 <%- include('../css/ListStyle.ejs') %>

@@ -22,20 +22,35 @@
                 </tr>
                 <td class="done"> </td>
             </table>
-        </div>
-
-        <!-- <footer>
-            <p> Copyright @Stellarix-Alfred 2023 </p>
-        </footer> -->
-        
+        </div>    
     </div>
-    <!-- <div class="nouvellePage"></div> -->
-    <button id="download-pdf" > Télécharger </button>
     
-    
+    <button id="download-pdf" > Télécharger </button>  
 </body>
 </html>
 
-<%- include('../javascript/FormatPDFScript.ejs') %>
+<!-- Prend les donnees stockees dans le stockage interne et les convertis en JSON -->
+<script src="partiels/jsonObject.js"></script>
+<!-- ---------------------------------------------------------------------- -->
+
+<script>
+    $(document).ready(function() {
+        // Creation des listes et sections
+        $.getScript(`partiels/SectionToDo.js`, function() {
+            SectionToDo()
+        })
+        $.getScript(`partiels/SectionToDoing.js`, function() {
+            SectionToDoing()
+        })
+        $.getScript(`partiels/SectionToDone.js`, function() {
+            SectionToDone()
+        })
+        // ----------------------------------------------------------------------
+
+        $.getScript(`partiels/SectionPdf.js`, function() {
+            SectionPdf()
+        })
+    })
+</script>
 
 <%- include('../css/FormatPDFStyle.ejs') %>

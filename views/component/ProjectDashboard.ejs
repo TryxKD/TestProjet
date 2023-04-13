@@ -1,24 +1,47 @@
 <%- include('../partiels/Header.ejs') %>
 
 <body>
-    <!-- <div class="project"> -->
-        <!-- <header>
-            <p class="header1"> <span id="project-time"></span> <span class="alfred"> Alfred </span> </p>
-        </header>
-        <div class="head">
-            <p class="header2"> <b> Projects Dashboard </b> created <span id="project-date"></span> </p>
-        </div> -->
-        <!-- <p class="header3">
-            <span> 3 </span> selection(s) in <span> En cours - Doing </span>
-            in <span> Mes Taches </span> of <span> ANDRIAMAHEFA </span>
-        </p>
-        <div class="tab">
-            
-        </div> -->
-    <!-- </div> -->
     <button id="download-project"> Télécharger </button>
 </body>
 </html>
 
-<%- include('../javascript/ProjectDashboardScript.ejs') %>
+<!-- Prend les donnees stockees dans le stockage interne et les convertis en JSON -->
+<script src="partiels/jsonObject.js"></script>
+<!-- ---------------------------------------------------------------------- -->
+
+<script>
+    $(document).ready(function() {
+        // Creation des tables
+        // jsonObjectToDo
+        $.getScript(`partiels/PDToDo.js`, function() {
+            PDToDo()
+        })
+        // ----------------------------------------------------------------------
+
+        // jsonObjectToDoing
+        $.getScript(`partiels/PDToDoing.js`, function() {
+            PDToDoing()
+        })
+        // ----------------------------------------------------------------------
+
+        // jsonObjectToDo
+        $.getScript(`partiels/PDToDo.js`, function() {
+            PDToDo()
+        })
+        // ----------------------------------------------------------------------
+
+        // jsonObjectToDo
+        $.getScript(`partiels/PDToDone.js`, function() {
+            PDToDone()
+        })
+        // ----------------------------------------------------------------------
+
+        // Telechargement de la page en version PDF
+        $.getScript(`partiels/PDPdf.js`, function() {
+            PDPdf()
+        })
+        // ----------------------------------------------------------------------
+    })
+</script>
+
 <%- include('../css/ProjectDashboardStyle.ejs') %>
