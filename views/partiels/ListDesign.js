@@ -35,7 +35,7 @@ function ListDesign() {
                     token++
                     $('body').Design(token);
                     deb = fin + 1;
-                    fin = deb + 19;
+                    fin = deb + 16;
                 }
             }
         });

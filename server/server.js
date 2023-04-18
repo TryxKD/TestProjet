@@ -1,5 +1,4 @@
 require('dotenv').config()
-// var html_to_pdf = require('html-pdf-node')
 const ejs = require('ejs')
 const express = require('express')
 const cookieSession = require('express-session')
@@ -9,10 +8,7 @@ const mongoose = require('mongoose')
 const lien = require('../routers/lien')
 const app = express()
 const path = require('path')
-
 const port2 = process.env.PORT || 3000
-// const uri = 'mongodb://localhost:27017/Test'
-// const MongoClient = require('mongodb').MongoClient
 const finalHandler = require('finalhandler');
 const http = require('http');
 
@@ -27,16 +23,13 @@ app.set('view engine', 'ejs');
 // ---------------------------
 
 // --------- Mongoose Connection ---------
-
 mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection
 db.on('error', (error) => console.log(error))
 db.once('open', () => console.log('Connecter'))
-
 // ---------------------------
 
 // --------- Milieu ---------
-
 app.use('', router)
 app.use(cookieSession({
     name: 'session',
@@ -59,7 +52,6 @@ app.use(bodyParser.json());
 app.get('/', function (req, res) {
     res.render('index.ejs');
 });
-
 // ---------------------------
 
 ejs.render('Bonjour <%= name %> !', {name: 'world'})

@@ -39,10 +39,6 @@
             <div class="containerHeader">
                 <nav>
                     <p> Mes Taches </p>
-                    <select>
-                        <option value=""></option>
-                        <option value="exporterCSV"> Exporter CSV </option>
-                    </select>
                     <ul>
                         <li class="active"> <a href="#"> Liste </a> </li>
                         <li class="none"> <a href="#"> Tableau </a> </li>
@@ -51,60 +47,34 @@
                     </ul>
                 </nav>
             </div>
-        </div>
-    
-        <div class="export">
-            <div class="btn">
-                <button class="btnAjout"> Ajouter une tache </button>
-                <button class="btnExporter"> Exporter </button>
-            </div>
-            <table>
-                <tr>
-                    <th> Nouvelles demandes - ToDo:</th>
-                </tr>
-                <tr>
+
+            <div class="table">
+                <div class="btn">
+                    <button class="btnAjout"> Ajouter une tache </button>
+                    <button class="btnExporter"> Exporter </button>
+                </div>
+
+                <div class="block">
+                    <h5> Nouvelles demandes - ToDo:</h5>
                     <% if (toDo.length > 0) { %>
                         <% toDo.forEach(toDos => { %>
-                            <td class="nouv"> <input type="checkbox" name=""class="check" value="<%= toDos.id %>"> <p class="para"> <%= toDos.Task_text %> </p> </td>
+                            <span class="nouv"> <input type="checkbox" name=""class="check" value="<%= toDos.id %>"> <p class="para"> <%= toDos.Task_text %> </p> </span>
                         <% }) %>
                     <% } %>
-                </tr>
-                <tr>
-                    <th> En cours - Doing: </th>
-                </tr>
-                <tr>
-                    <!-- <% if (toDoing.length > 0) { %>
-                        <% toDoing.forEach(toDoings => { %>
-                            <td class="doing"> <input type="checkbox" name=""class="check" value="<%= toDoings.id %>"> <p class="para"> <%= toDoings.paraToDoing %> </p> </td>
-                        <% }) %>
-                    <% } %> -->
-                    <!-- <% for(let key in tags) { %>
-                        <% if (["1", "2", "4", "7"].includes(key)) { %>
-                            <td class="doing"> <input type="checkbox" name=""class="check" value="<%= tags[key].id %>"> <p class="para"> <%= tags[key].paraToDoing %> </p> </td>
+                    <h5> En cours - Doing: </h5>
+                    <h5> Fait - Done: </h5>
+                        <% if (toDone.length > 0) { %>
+                            <% toDone.forEach(tache => { %>
+                                <span class="done"> <input type="checkbox" name=""class="check" value="<%= tache.id %>"> <p class="para"> <%= tache.Task_text %> </p> </span>
+                            <% }) %>
+                        <% } else { %>
+                            <span> <p class="para"> Vous n'avez aucune tache </p> </span>
                         <% } %>
-                    <% } %> -->
-                    <% if (tasksDoing.length > 0) { %>
-                        <% tasksDoing.forEach(tasksDoings => { %>
-                            <td class="doing"> <input type="checkbox" name=""class="check" value="<%= tasksDoings.id %>"> <p class="para"> <%= tasksDoings.Task_text %> </p> </td>
-                        <% }) %>
-                    <% } %>
-                </tr>
-                <tr>
-                    <th> Fait - Done: </th>
-                </tr>
-                <tr>
-                    <% if (taches.length > 0) { %>
-                        <% taches.forEach(tache => { %>
-                            <td class="done"> <input type="checkbox" name=""class="check" value="<%= tache.id %>"> <p class="para"> <%= tache.Task_text %> </p> </td>
-                        <% }) %>
-                    <% } else { %>
-                        <td> <p class="para"> Vous n'avez aucune tache </p> </td>
-                    <% } %>
-                </tr>
-    
-            </table>
+                </div>
+            </div>
         </div>
     </div>
+
     <div id="Exportat">
         <div class="fond">
             <div class="exportHeader">
@@ -136,6 +106,14 @@
 </body>
 </html>
 
-<%- include('../javascript/TachesScript.ejs') %>
+<!-- <script>
+    $.getScript(`javascript/TachesScript.ejs`, function() {
+        PDF();
+    })
+</script> -->
+
+<script></script>
+
+<%- include(`../javascript/TachesScript.ejs`) %>
 
 <%- include('../css/TachesStyle.ejs') %>
