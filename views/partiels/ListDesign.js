@@ -1,4 +1,4 @@
-function ListDesign() {
+function ListDesign(json_todo, json_toDone) {
     // Creation design
     $.fn.Design = function(token) {
         $('body').append(
@@ -15,6 +15,16 @@ function ListDesign() {
         );
     }
     // ----------------------------------------------------------------------
+
+    var tabList = [...json_todo, ...json_toDone]
+    console.log('tabList: ', tabList);
+
+    var deb = 0;
+    console.log('deb: ', deb);
+    var fin = 16
+    console.log('fin: ', fin);
+    var dim = tabList.length - 1;
+    console.log('dim: ', dim);
 
     // Affichage des taches
     if (tabList.length > 0) {

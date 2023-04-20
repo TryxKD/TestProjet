@@ -1,11 +1,14 @@
-function PDPdf() {
+function PDPdf(json_todo, json_toDone) {
     // Telechargement de la page en version PDF
     $('#download-project').click(function() {
         // Efface  le bouton du telechargement
         $('#download-project').css('display', 'none')
         
         // Converti le contenu html en version PDF
-        $.get('/ProjectDashboard', function(html) {
+        let json_todo_id = json_todo.map(x => x.id)
+        let json_toDone_id = json_toDone.map(x => x.id)
+
+        $.post('/ProjectDashboard', {toDo_check:json_todo_id, toDone_check:json_toDone_id}, function(html) {
             var project = $('body').html()
 
             // Efface les caches

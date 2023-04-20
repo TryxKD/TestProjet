@@ -5,28 +5,27 @@
 </body>
 </html>
 
-<!-- Prend les donnees stockees dans le stockage interne et les convertis en JSON -->
-<script src="partiels/jsonObject.js"></script>
-<!-- ---------------------------------------------------------------------- -->
-
 <!-- Declaration et initialisation variable -->
-<script src="partiels/ListVariable.js"></script>
+<!-- <script src="partiels/ListVariable.js"></script> -->
 <!-- ---------------------------------------------------------------------- -->
 
 <script>
-    $(document).ready(function() {
+    let json_todo = <%-JSON.stringify(indexToDo);%>;
+    let json_toDone = <%-JSON.stringify(indexToDone);%>;
+
+    // $(document).ready(function() {
         // Creation design
         $.getScript(`partiels/ListDesign.js`, function() {
-            ListDesign()
+            ListDesign(json_todo, json_toDone)
         })
         // ----------------------------------------------------------------------
 
         // Telechargement de la page en version PDF
         $.getScript(`partiels/ListPdf.js`, function() {
-            ListPdf()
+            ListPdf(json_todo, json_toDone)
         })
         // ----------------------------------------------------------------------
-    })
+    // })
 </script>
 
 <%- include('../css/ListStyle.ejs') %>

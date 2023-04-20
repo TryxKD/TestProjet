@@ -16,7 +16,8 @@ const http = require('http');
 
 // app.set('views', '../views');
 app.set('view engine', 'ejs');
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ limit: '10gb', extended: true }));
 // app.use('/', lien);
 // app.use('', require('../routers/lien'))
 
@@ -40,14 +41,12 @@ app.use(cookieSession({
     SameSite: 'None', // permet le partage de cookie entre des domaines différents
     secure: true // indique que les cookies doivent être envoyés uniquement via HTTPS
 }))
-app.use(express.urlencoded({ extended: false }))
-app.use(express.json())
+// app.use(express.urlencoded({ extended: false }))
+// app.use(express.json())
 
 app.use(express.static(path.join(__dirname, '../views/')))
 
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
     res.render('index.ejs');

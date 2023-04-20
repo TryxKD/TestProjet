@@ -1,4 +1,4 @@
-function PDToDo() {
+function PDToDo(jsonObjectToDo) {
     if($.isArray(jsonObjectToDo) && (jsonObjectToDo.length > 0)) {
         $.each(jsonObjectToDo, function(index, value) {
             if (value != null && value !== undefined) {

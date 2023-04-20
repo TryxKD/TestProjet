@@ -1,6 +1,5 @@
 // Declaration et initialisation variable 
 jsonObjectToDo = jsonObjectToDo ? jsonObjectToDo : []
-jsonObjectToDoing = jsonObjectToDoing ? jsonObjectToDoing : []
 jsonObjectToDone = jsonObjectToDone ? jsonObjectToDone : []
 var tabList = [...jsonObjectToDo, ...jsonObjectToDoing, ...jsonObjectToDone]
 console.log('tabList: ', tabList);

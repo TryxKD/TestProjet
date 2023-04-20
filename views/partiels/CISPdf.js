@@ -1,10 +1,13 @@
-function drawPdf() {
+function drawPdf(json_todo, json_toDone) {
     // Telechargement du contenu HTML en PDF
     $('#download-Cards').click(function() {
         // Effacer le bouton apres le click
         $('#download-Cards').css('display', 'none')
 
-        $.get('/CardsIS', function(html) {
+        let json_todo_id = json_todo.map(x => x.id)
+        let json_toDone_id = json_toDone.map(x => x.id)
+
+        $.post('/CardsIS', {toDo_check:json_todo_id, toDone_check:json_toDone_id}, function(html) {
             // Declaration variable
             // Prend le body de la page 
             var bodyCards = $('body').html()

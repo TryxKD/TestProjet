@@ -30,27 +30,28 @@
 </html>
 
 <!-- Prend les donnees stockees dans le stockage interne et les convertis en JSON -->
-<script src="partiels/jsonObject.js"></script>
+<!-- <script src="partiels/jsonObject.js"></script> -->
 <!-- ---------------------------------------------------------------------- -->
 
 <script>
-    $(document).ready(function() {
+    let json_todo = <%-JSON.stringify(indexToDo);%>;
+    let json_toDone = <%-JSON.stringify(indexToDone);%>;
+
+    // $(document).ready(function() {
+
         // Creation des listes et sections
         $.getScript(`partiels/SectionToDo.js`, function() {
-            SectionToDo()
-        })
-        $.getScript(`partiels/SectionToDoing.js`, function() {
-            SectionToDoing()
+            SectionToDo(json_todo)
         })
         $.getScript(`partiels/SectionToDone.js`, function() {
-            SectionToDone()
+            SectionToDone(json_toDone)
         })
         // ----------------------------------------------------------------------
 
         $.getScript(`partiels/SectionPdf.js`, function() {
-            SectionPdf()
+            SectionPdf(json_todo, json_toDone)
         })
-    })
+    // })
 </script>
 
 <%- include('../css/FormatPDFStyle.ejs') %>

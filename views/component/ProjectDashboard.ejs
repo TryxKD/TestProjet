@@ -5,37 +5,30 @@
 </body>
 </html>
 
-<!-- Prend les donnees stockees dans le stockage interne et les convertis en JSON -->
-<script src="partiels/jsonObject.js"></script>
-<!-- ---------------------------------------------------------------------- -->
-
 <script>
-    $(document).ready(function() {
+    let json_todo = <%-JSON.stringify(indexToDo);%>;
+    let json_toDone = <%-JSON.stringify(indexToDone);%>;
+
+    // $(document).ready(function() {
         // Creation des tables
         // jsonObjectToDo
         $.getScript(`partiels/PDToDo.js`, function() {
-            PDToDo()
-        })
-        // ----------------------------------------------------------------------
-
-        // jsonObjectToDoing
-        $.getScript(`partiels/PDToDoing.js`, function() {
-            PDToDoing()
+            PDToDo(json_todo)
         })
         // ----------------------------------------------------------------------
 
         // jsonObjectToDo
         $.getScript(`partiels/PDToDone.js`, function() {
-            PDToDone()
+            PDToDone(json_toDone)
         })
         // ----------------------------------------------------------------------
 
         // Telechargement de la page en version PDF
         $.getScript(`partiels/PDPdf.js`, function() {
-            PDPdf()
+            PDPdf(json_todo, json_toDone)
         })
         // ----------------------------------------------------------------------
-    })
+    // })
 </script>
 
 <%- include('../css/ProjectDashboardStyle.ejs') %>

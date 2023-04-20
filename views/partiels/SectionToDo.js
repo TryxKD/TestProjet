@@ -1,11 +1,13 @@
-function SectionToDo() {
+function SectionToDo(jsonObjectToDO) {
     // Prend les donnees stockees dans le stockage interne et les convertis en JSON
-    var jsonObjectToDO = JSON.parse(localStorage.getItem('jsonToDo'))
-    console.log("toDo: ", jsonObjectToDO)
+    // var jsonObjectToDO = JSON.parse(localStorage.getItem('jsonToDo'))
+    console.log('toDo: ', jsonObjectToDO);
     // ----------------------------------------------------------------------
 
     // Creation des listes et sections
     if ($.isArray(jsonObjectToDO) && jsonObjectToDO.length > 0) {
+    // console.log("toDo: ", jsonObjectToDO.length)
+
         $.each(jsonObjectToDO, function(index, value) {
             if (value != null && value !== undefined) {
                 $('td.nouveau').append('<p class="para">' + (value.Task_text != null && value.Task_text !== undefined ? value.Task_text : '') + '\n' + '</p>');

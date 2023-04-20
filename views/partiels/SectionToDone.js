@@ -1,6 +1,5 @@
-function SectionToDone() {
+function SectionToDone(jsonObjectToDone) {
     // Prend les donnees stockees dans le stockage interne et les convertis en JSON
-    var jsonObjectToDone = JSON.parse(localStorage.getItem('jsonToDone'));
     console.log('toDone: ', jsonObjectToDone);
     // ----------------------------------------------------------------------
 

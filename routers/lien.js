@@ -34,6 +34,7 @@ let nav = [
 ]
 let toDo = []
 let toDone = []
+let toAll = []
 
 router.get('/', function(req, res) {
     let titre = 'Accueil'
@@ -43,10 +44,15 @@ router.get('/', function(req, res) {
 })
 
 router.get('/Taches', function(req, res) {
-    let titre = 'Mes Taches'
+    toDo = [];
+    toDone = []
+    toAll = []
+    let titre = 'Mes Taches';
     axios.get('http://10.210.210.92:3000/tasklist/283/129')
     .then(taches_data => {
-        console.log('taches_data: ', taches_data.data.tasks);
+       // console.log('taches_data: ', taches_data.data.tasks);
+        console.log('load tache');
+
         
         taches_data.data.tasks.forEach((value) => {
             if (value.hasOwnProperty('isDone') && value.isDone === 0) {
@@ -55,6 +61,11 @@ router.get('/Taches', function(req, res) {
                 toDone.push(value);
               }
         });
+
+        taches_data.data.tasks.forEach((value) => {
+            toAll.push(value)
+        })
+
         res.render('component/Taches', {titre, toDo, toDone, nav })
         // res.render('component/Taches')
         console.log('Taches!')
@@ -62,25 +73,108 @@ router.get('/Taches', function(req, res) {
     
 })
 
-router.get('/FormatPDF', function(req, res) {
+router.post('/FormatPDF', function(req, res) {
     let titre = 'FormatPDF'
-    res.render('component/FormatPDF', {titre})
+    let toDo_check = req.body.toDo_check ?  req.body.toDo_check : [];
+    let toDone_check = req.body.toDone_check ? req.body.toDone_check : []
+    
+    if(toDo_check.length == 0 && toDone_check.length == 0){
+        res.render('component/FormatPDF', {titre, indexToDo: toDo, indexToDone: toDone})
+    }
+    else{
+        let indexToDo = toDo.filter((element) => {
+            if(toDo_check.includes(element.id.toString())){
+                return true
+            }  
+        })
+
+        let indexToDone = toDone.filter((element) => {
+            if(toDone_check.includes(element.id.toString())){
+                return true
+            }  
+        })
+        res.render('component/FormatPDF', {titre, indexToDo, indexToDone})
+    }
+    
     console.log('FormatPDF')
 })
 
-router.get('/List', function(req, res) {
+router.post('/List', function(req, res) {
     let titre = 'List'
-    res.render('component/List.ejs', {titre})
+    let toDo_check = req.body.toDo_check ?  req.body.toDo_check : [];
+    let toDone_check = req.body.toDone_check ? req.body.toDone_check : []
+
+    if(toDo_check.length == 0 && toDone_check.length == 0){
+        res.render('component/List', {titre, indexToDo: toDo, indexToDone: toDone})
+    }
+    else{
+        let indexToDo = toDo.filter((element) => {
+            if(toDo_check.includes(element.id.toString())){
+                return true
+            }  
+        })
+
+        let indexToDone = toDone.filter((element) => {
+            if(toDone_check.includes(element.id.toString())){
+                return true
+            }  
+        })
+        res.render('component/List', {titre, indexToDo, indexToDone})
+    }
+
+    console.log('List')
 })
 
-router.get('/CardsIS', function(req, res) {
+router.post('/CardsIS', function(req, res) {
     let titre = 'CardsIS'
-    res.render('component/CardsIS.ejs', {titre})
+    let toDo_check = req.body.toDo_check ?  req.body.toDo_check : [];
+    let toDone_check = req.body.toDone_check ? req.body.toDone_check : []
+
+    if(toDo_check.length == 0 && toDone_check.length == 0){
+        res.render('component/CardsIS', {titre, indexToDo: toDo, indexToDone: toDone})
+    }
+    else{
+        let indexToDo = toDo.filter((element) => {
+            if(toDo_check.includes(element.id.toString())){
+                return true
+            }  
+        })
+
+        let indexToDone = toDone.filter((element) => {
+            if(toDone_check.includes(element.id.toString())){
+                return true
+            }  
+        })
+        res.render('component/CardsIS', {titre, indexToDo, indexToDone})
+    }
+
+    console.log('CardsIS')
 })
 
-router.get('/ProjectDashboard', function(req, res) {
+router.post('/ProjectDashboard', function(req, res) {
     let titre = 'Project Dashboard'
-    res.render('component/ProjectDashboard.ejs', {titre})
+    let toDo_check = req.body.toDo_check ?  req.body.toDo_check : [];
+    let toDone_check = req.body.toDone_check ? req.body.toDone_check : []
+
+    if(toDo_check.length == 0 && toDone_check.length == 0){
+        res.render('component/ProjectDashboard', {titre, indexToDo: toDo, indexToDone: toDone})
+    }
+    else{
+        let indexToDo = toDo.filter((element) => {
+            if(toDo_check.includes(element.id.toString())){
+                return true
+            }  
+        })
+
+        let indexToDone = toDone.filter((element) => {
+            if(toDone_check.includes(element.id.toString())){
+                return true
+            }  
+        })
+        res.render('component/ProjectDashboard', {titre, indexToDo, indexToDone})
+    }
+
+    console.log('ProjectDashboard')
 })
 
 module.exports = router;

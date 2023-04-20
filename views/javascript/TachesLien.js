@@ -3,18 +3,35 @@ function TachesLien() {
     if ($('option[value="ListSection"]').is(':selected')) {
         if($('.check:checked').length > 0) {
         // Ouvrir dans une nouvelle onglet
-        window.open("/FormatPDF")
+        // window.open("/FormatPDF")
+            $.ajax({
+                url: '/FormatPDF',
+                type: 'POST',
+                data: {
+                    toDo_check: toDo_tache,
+                    toDone_check: done_tache
+                },
+                success: function(html) {
+                    var newWindow = window.open("", "_blank")
+                    newWindow.document.write(html)
+                }
+            })
+            
         } 
         else {
             if($('.check:checked').length == 0) {
-            toDo_tache.push(...dataToDo)
-            console.log('toDo_tache: ', toDo_tache);
-            done_tache.push(...dataToDone)
-            console.log('done_tache: ', done_tache);
-            localStorage.setItem('jsonToDo', JSON.stringify(toDo_tache))
-            localStorage.setItem("jsonToDoing", JSON.stringify(doing_tache))
-            localStorage.setItem("jsonToDone", JSON.stringify(done_tache)) 
-            window.open("/FormatPDF")
+                $.ajax({
+                    url: '/FormatPDF',
+                    type: 'POST',
+                    data: {
+                        toDo_check: toDo_tache,
+                        toDone_check: done_tache
+                    },
+                    success: function(html) {
+                        var newWindow = window.open("", "_blank")
+                        newWindow.document.write(html)
+                    }
+                })
             }
         }
     // ----------------------------------------------------------------------
@@ -23,18 +40,36 @@ function TachesLien() {
     } else if( $('option[value="List"]').is(':selected')) {
         if($('.check:checked').length > 0) {
         // Ouvrir dans une nouvelle onglet
-        window.open('/List')
+        // window.open('/List')
+
+            $.ajax({
+                url: '/List',
+                type: 'POST',
+                data: {
+                    toDo_check: toDo_tache,
+                    toDone_check: done_tache
+                },
+                success: function(html) {
+                    // $('body').html(html)
+                    var newWindow = window.open("", "_blank")
+                    newWindow.document.write(html)
+                }
+            })
         } 
         else {
             if($('.check:checked').length == 0) {
-            toDo_tache.push(...dataToDo)
-            console.log('toDo_tache: ', toDo_tache);
-            done_tache.push(...dataToDone)
-            console.log('done_tache: ', done_tache);
-            localStorage.setItem('jsonToDo', JSON.stringify(toDo_tache))
-            localStorage.setItem("jsonToDoing", JSON.stringify(doing_tache))
-            localStorage.setItem("jsonToDone", JSON.stringify(done_tache)) 
-            window.open("/List")
+                $.ajax({
+                    url: '/List',
+                    type: 'POST',
+                    data: {
+                        toDo_check: toDo_tache,
+                        toDone_check: done_tache
+                    },
+                    success: function(html) {
+                        var newWindow = window.open("", "_blank")
+                        newWindow.document.write(html)
+                    }
+                })
             }
         }
     // ----------------------------------------------------------------------
@@ -44,18 +79,36 @@ function TachesLien() {
     } else if($('option[value="CardsIS"]').is(':selected')) {
         if($('.check:checked').length > 0) {
         // Ouvrir dans une nouvelle onglet
-            window.open('/CardsIS')
+            // window.open('/CardsIS')
+
+            $.ajax({
+                url: '/CardsIS',
+                type: 'POST',
+                data: {
+                    toDo_check: toDo_tache,
+                    toDone_check: done_tache
+                },
+                success: function(html) {
+                    // $('body').html(html)
+                    var newWindow = window.open("", "_blank")
+                    newWindow.document.write(html)
+                }
+            })
         } 
         else {
             if($('.check:checked').length == 0) {
-            toDo_tache.push(...dataToDo)
-            console.log('toDo_tache: ', toDo_tache);
-            done_tache.push(...dataToDone)
-            console.log('done_tache: ', done_tache);
-            localStorage.setItem('jsonToDo', JSON.stringify(toDo_tache))
-            localStorage.setItem("jsonToDoing", JSON.stringify(doing_tache))
-            localStorage.setItem("jsonToDone", JSON.stringify(done_tache)) 
-            window.open("/CardsIS")
+                $.ajax({
+                    url: '/CardsIS',
+                    type: 'POST',
+                    data: {
+                        toDo_check: toDo_tache,
+                        toDone_check: done_tache
+                    },
+                    success: function(html) {
+                        var newWindow = window.open("", "_blank")
+                        newWindow.document.write(html)
+                    }
+                })
             }
         }
     // ----------------------------------------------------------------------
@@ -64,19 +117,37 @@ function TachesLien() {
     } else if($('option[value="ProjectDashboard"]').is(':selected')) {
         if($('.check:checked').length > 0) {
         // Ouvrir dans une nouvelle onglet
-        window.open('/ProjectDashboard')
+        // window.open('/ProjectDashboard')
+
+        $.ajax({
+            url: '/ProjectDashboard',
+            type: 'POST',
+            data: {
+                toDo_check: toDo_tache,
+                toDone_check: done_tache
+            },
+            success: function(html) {
+                // $('body').html(html)
+                var newWindow = window.open("", "_blank")
+                newWindow.document.write(html)
+            }
+        })
         
         } 
         else {
             if($('.check:checked').length == 0) {
-            toDo_tache.push(...dataToDo)
-            console.log('toDo_tache: ', toDo_tache);
-            done_tache.push(...dataToDone)
-            console.log('done_tache: ', done_tache);
-            localStorage.setItem('jsonToDo', JSON.stringify(toDo_tache))
-            localStorage.setItem("jsonToDoing", JSON.stringify(doing_tache))
-            localStorage.setItem("jsonToDone", JSON.stringify(done_tache)) 
-            window.open("/ProjectDashboard")
+                $.ajax({
+                    url: '/ProjectDashboard',
+                    type: 'POST',
+                    data: {
+                        toDo_check: toDo_tache,
+                        toDone_check: done_tache
+                    },
+                    success: function(html) {
+                        var newWindow = window.open("", "_blank")
+                        newWindow.document.write(html)
+                    }
+                })
             }
         }
     // ----------------------------------------------------------------------
